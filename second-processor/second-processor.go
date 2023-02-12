@@ -11,7 +11,7 @@ type Processable interface {
 
 // We use generics here to workaround "array of interfaces" limitations:
 // https://dusted.codes/using-go-generics-to-pass-struct-slices-for-interface-slices
-func Results[P Processable](items []P) string {
+func ResultsGenerics[P Processable](items []P) string {
 	result := []string{}
 	for _, item := range items {
 		thisLine := []string{}
@@ -21,4 +21,8 @@ func Results[P Processable](items []P) string {
 		result = append(result, strings.Join(thisLine, " ")+"\n")
 	}
 	return strings.Join(result, "")
+}
+
+func ResultsInterfaces(items []Processable) string {
+	return ResultsGenerics(items)
 }

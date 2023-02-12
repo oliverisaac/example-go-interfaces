@@ -15,7 +15,7 @@ func (m mockProcessable) Quantity() int {
 	return m.quantity
 }
 
-func newMockProcessable(value string, quantity int) Processable {
+func newMockProcessable(value string, quantity int) mockProcessable {
 	return mockProcessable{
 		value:    value,
 		quantity: quantity,
@@ -51,7 +51,7 @@ func TestResults(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Results(tt.items); got != tt.want {
+			if got := ResultsGenerics(tt.items); got != tt.want {
 				t.Errorf("Results() = %v, want %v", got, tt.want)
 			}
 		})

@@ -15,7 +15,7 @@ func (m mockProcessable) Uppercase() bool {
 	return m.doUpper
 }
 
-func newMockProcessable(value string, doUpper bool) Processable {
+func newMockProcessable(value string, doUpper bool) mockProcessable {
 	return mockProcessable{
 		value:   value,
 		doUpper: doUpper,
@@ -51,7 +51,7 @@ func TestResults(t *testing.T) {
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := Results(tt.items); got != tt.want {
+			if got := ResultsGenerics(tt.items); got != tt.want {
 				t.Errorf("Results() = %v, want %v", got, tt.want)
 			}
 		})
